@@ -1,0 +1,68 @@
+/* fonts */
+export const FontFamily = {
+  kumbhSansBold: "KumbhSans-Bold",
+  kumbhSansLight: "KumbhSans-Light",
+  kumbhSansSemiBold: "KumbhSans-SemiBold",
+  kumbhSansRegular: "KumbhSans-Regular",
+  rubikMedium: "Rubik-Medium",
+  kumbhSansMedium: "KumbhSans-Medium",
+  kumbhSansExtraBold: "KumbhSans-ExtraBold",
+  rubikLight: "Rubik-Light",
+  josefinSansBold: "JosefinSans-Bold",
+  cantarellBold: "Cantarell-Bold",
+  cantarellRegular: "Cantarell-Regular",
+};
+/* font sizes */
+export const FontSize = {
+  size_mini: 15,
+  size_3xs: 10,
+  size_4xs: 9,
+  size_xs: 12,
+  size_sm: 14,
+  size_base: 16,
+  size_smi: 13,
+  size_2xs: 11,
+  size_5xs: 8,
+  size_xl: 20,
+  size_29xl: 48,
+};
+/* Colors */
+export const Color = {
+  colorWhite: "#fff",
+  colorSlategray_100: "#677294",
+  colorSlategray_200: "rgba(103, 114, 148, 0.45)",
+  colorSlategray_300: "rgba(103, 114, 148, 0.16)",
+  colorMediumvioletred_100: "#c72172",
+  colorMediumvioletred_200: "#aa165f",
+  colorMediumvioletred_300: "rgba(199, 33, 114, 0.83)",
+  colorWhitesmoke: "#f4f4f4",
+  colorGray_100: "#222",
+  colorGray_200: "#101828",
+  colorGray_300: "rgba(0, 0, 0, 0.6)",
+  colorGray_400: "rgba(0, 0, 0, 0.9)",
+  colorGray_500: "rgba(16, 24, 40, 0.8)",
+  colorGray_600: "rgba(0, 0, 0, 0.18)",
+  colorGray_700: "rgba(0, 0, 0, 0.8)",
+  colorGray_800: "rgba(16, 24, 40, 0.9)",
+  colorGray_900: "rgba(16, 24, 40, 0.7)",
+  colorGray_1000: "rgba(0, 0, 0, 0.7)",
+  colorGainsboro_100: "#e2e2e2",
+  colorGainsboro_200: "rgba(217, 217, 217, 0)",
+  colorBlack: "#000",
+  colorSeagreen: "#28895e",
+  colorKhaki: "rgba(240, 218, 105, 0.5)",
+  colorLightskyblue: "rgba(146, 189, 246, 0.5)",
+  colorDarkslateblue: "rgba(37, 43, 97, 0.83)",
+  colorPalevioletred: "#74274d",
+  colorRed: "rgba(239, 18, 37, 0.82)",
+};
+/* border radiuses */
+export const Border = {
+  br_3xs: 10,
+  br_8xs: 5,
+  br_141xl: 160,
+  br_11xs_3: 1,
+  br_10xs_7: 3,
+  br_xs: 12,
+  br_mini: 15,
+};
