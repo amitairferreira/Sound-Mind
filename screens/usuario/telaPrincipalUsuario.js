@@ -22,7 +22,7 @@ const TLPrincipalUsuario = () => {
         </Pressable>
 
         <View style={styles.headerButtons}>
-          <Pressable style={styles.headerButton}>
+          <Pressable style={styles.headerButton} onPress={() => navigation.navigate("TLMinhaJornada")}>
             <Image
               style={styles.headerIcon}
               source={require("../../assets/frame31.png")}
@@ -48,7 +48,7 @@ const TLPrincipalUsuario = () => {
 
       {/* Corpo */}
       <View style={styles.body}>
-        <Pressable style={styles.card}>
+        <Pressable style={styles.card} onPress={() => navigation.navigate("TListaProfisionais")}>
           <Image
             style={styles.cardImage}
             source={require("../../assets/image2.png")}
@@ -67,10 +67,7 @@ const TLPrincipalUsuario = () => {
 
 
 
-
-
-
-        <Pressable style={styles.card}>
+        <Pressable style={styles.card} >
           <Image
             style={styles.cardImage}
             source={require("../../assets/image2.png")}

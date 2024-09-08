@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, Pressable, View, Image, TextInput, Alert } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { FontSize, Color, FontFamily, Border } from "../../GlobalStyles";
-import supabase from "../../database/database";  // Certifique-se de que o caminho para o supabase esteja correto
+import supabase from "../../database/database";
 
 const TLPerfilUsuario = () => {
   const navigation = useNavigation();
@@ -13,7 +13,6 @@ const TLPerfilUsuario = () => {
   });
   const [isEditing, setIsEditing] = useState(false);
 
-  // Função para buscar dados do usuário do Supabase
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -36,13 +35,13 @@ const TLPerfilUsuario = () => {
     fetchUserData();
   }, []);
 
-  // Função para salvar os dados editados no Supabase
+
   const saveUserData = async () => {
     try {
       const { data: { user }, erro } = await supabase.auth.getUser();
 
       const { data, error } = await supabase
-        .from("usuariospi") // Nome da tabela no Supabase
+        .from("usuariospi") 
         .update({ nome: userData.nome, email: userData.email, senha: userData.senha })
         .eq("id", user.id);
 
@@ -142,20 +141,20 @@ const styles = StyleSheet.create({
     backgroundColor: "#C72172",
     height: 200,
     alignItems: "center",
-    justifyContent: "center", // Centraliza o conteúdo verticalmente
+    justifyContent: "center",
   },
   headerText: {
     color: "#FFFFFF",
     fontSize: 20,
     fontWeight: "bold",
-    marginBottom: 10, // Espaço entre o texto e a imagem
+    marginBottom: 10,
   },
   headerIcon: {
-    width: 50,  // Ajuste o tamanho conforme necessário
-    height: 50, // Ajuste o tamanho conforme necessário
+    width: 50,
+    height: 50,
   },
   content: {
-    flex: 1, // Expande para ocupar o espaço disponível, empurrando o footer para o final
+    flex: 1,
     paddingHorizontal: 20,
     paddingTop: 10,
   },
