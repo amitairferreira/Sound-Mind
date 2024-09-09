@@ -59,27 +59,23 @@ const TListaProfissionais = () => {
 
       <ScrollView contentContainerStyle={styles.profissionaisContainer}>
         {profissionais.map((profissional, index) => (
-          <View key={index} style={styles.card}>
-           
+          <Pressable 
+            key={index} 
+            style={styles.card} 
+            onPress={() => navigation.navigate("TAgendarProfissional", { profissional })}
+          >
             <Image style={styles.profissionalImage} source={profissional.imagem} />
-           
             <Text style={styles.nomeText}>{profissional.nome}</Text>
-            
             <Image style={styles.estrelasImage} source={require("../../assets/estrelas-cheias.png")} />
-            
             <Text style={styles.crpText}>CRP: {profissional.crp}</Text>
-            
             <Text style={styles.especialidadeText}>{profissional.especialidade}</Text>
-
             <Image style={styles.verificadoIcon} source={require("../../assets/verificado.png")} />
             <Image style={styles.frameIcon} source={require("../../assets/frame3.png")} />
-          </View>
+          </Pressable>
         ))}
-        
         <View style={{ height: 100 }} />
       </ScrollView>
 
-      
       <View style={styles.footer}>
         <Pressable style={styles.footerButton} onPress={() => navigation.navigate("TLPrincipalUsuario")}>
           <Image style={styles.footerIcon} source={require("../../assets/frame28.png")} />
@@ -195,5 +191,3 @@ const styles = StyleSheet.create({
 });
 
 export default TListaProfissionais;
-
-

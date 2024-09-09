@@ -29,7 +29,7 @@ const TLPrincipalUsuario = () => {
             />
             <Text style={styles.headerButtonText}>Minha Jornada</Text>
           </Pressable>
-          <Pressable style={styles.headerButton}>
+          <Pressable style={styles.headerButton} >
             <Image
               style={styles.headerIcon}
               source={require("../../assets/frame29.png")}
@@ -57,7 +57,7 @@ const TLPrincipalUsuario = () => {
         </Pressable>
 
 
-        <Pressable style={styles.card}>
+        <Pressable style={styles.card} onPress={() => navigation.navigate("TListaProfisionais")}>
           <Image
             style={styles.cardImage}
             source={require("../../assets/frame33.png")}

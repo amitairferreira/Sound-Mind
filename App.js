@@ -10,6 +10,7 @@ import TLPrincipalUsuario from "./screens/usuario/telaPrincipalUsuario"
 import TLPerfilUsuario from "./screens/usuario/perfilUsuario";
 import TListaProfisionais from "./screens/usuario/listaProfissionais";
 import TLMinhaJornada from "./screens/usuario/minhaJornada";
+import TAgendarProfissional from "./screens/usuario/agendamentProfissionl";
 
 import TLCadastroEspecialista from "./screens/profissional/telaCadastroProfissional";
 import TLLoginProfissional from "./screens/profissional/telaLoginProfissional"
@@ -64,6 +65,11 @@ export default function App() {
           name="TLMinhaJornada"
           component={TLMinhaJornada}
           options={{title: 'Motivação diária'}}
+        />
+        <Stack.Screen
+          name="TAgendarProfissional"
+          component={TAgendarProfissional}
+          options={{title: 'Prossional'}}
         />
       </Stack.Navigator>
     </NavigationContainer>
