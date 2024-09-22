@@ -1,71 +1,81 @@
-import React, { useState }  from "react";
-import { StyleSheet, Text, Pressable, View, Image, TextInput } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import React, { useState } from "react";
+import { StyleSheet, Text, Pressable, View, Image, TextInput, ActivityIndicator } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { FontSize, Color, FontFamily, Border } from "../../GlobalStyles";
 import supabase from "../../database/database";
 
-const TLLoginProfissional = () => {
-  const navigation = useNavigation();
+const TLLoginProfissional = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
-  const [resultado,setResultado] = useState('');
-  const [carregando,setCarregando] = useState(false);
+  const [resultado, setResultado] = useState('');
+  const [carregando, setCarregando] = useState(false);
 
   const handleLogin = async () => {
     setResultado('');
     setCarregando(true);
-    console.log("Login", email)
+    console.log("Tentativa de login com email:", email);
 
-    let { data, error } = await supabase.auth.signInWithPassword({
-      email: email,
-      password: senha,
-    });
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: email,
+        password: senha,
+      });
 
-    setCarregando(false);
+      setCarregando(false);
 
-    if (error) {
-      console.log(JSON.stringify(error));
-      
-      setResultado("USUÁRIO/SENHA incorretos!");
-    } else {
-      await AsyncStorage.setItem('usuario', email);
-      navigation.navigate('TLPrincipalUsuario'); //alterar a tela de inicio do psicologo
+      if (error) {
+        console.error("Erro no login:", JSON.stringify(error));
+        setResultado("USUÁRIO/SENHA incorretos!");
+      } else {
+        await AsyncStorage.setItem('usuario', email);
+        navigation.navigate('TLPrincipalUsuario'); // Alterar para a tela correta
+      }
+    } catch (err) {
+      console.error("Erro inesperado:", err);
+      setResultado("Erro inesperado, tente novamente mais tarde.");
+      setCarregando(false);
     }
   };
 
-  return(
+  return (
     <View style={styles.tlLoginProfissional}>
       <Image
         style={styles.backgroundImage}
-        contentFit="cover"
         source={require("../../assets/cinzafundo.png")}
       />
-
-      <Text style={styles.soundMindText}>{`Sound Mind`}</Text>
+      <Text style={styles.soundMindText}>Sound Mind</Text>
 
       <View style={styles.inputContainer}>
-        <TextInput 
+        <TextInput
           style={styles.inputField}
           placeholder="Email"
           onChangeText={setEmail}
           placeholderTextColor={Color.colorSlategray_100}
+          keyboardType="email-address"
+          accessibilityLabel="Campo de Email"
         />
-        <TextInput 
+        <TextInput
           style={styles.inputField}
           placeholder="Senha"
           onChangeText={setSenha}
           placeholderTextColor={Color.colorSlategray_100}
           secureTextEntry={true}
+          accessibilityLabel="Campo de Senha"
         />
       </View>
 
-      <Pressable
-        style={styles.createAccountButton}
-        onPress={handleLogin}
-      >
-        <Text style={styles.createAccountText}>Entrar</Text>
-      </Pressable>
+      {carregando ? (
+        <ActivityIndicator size="large" color={Color.colorMediumvioletred_100} />
+      ) : (
+        <Pressable
+          style={styles.createAccountButton}
+          onPress={handleLogin}
+          accessibilityLabel="Botão Entrar"
+          importantForAccessibility="yes"
+        >
+          <Text style={styles.createAccountText}>Entrar</Text>
+        </Pressable>
+      )}
 
       <View style={styles.socialButtonsContainer}>
         <Pressable style={styles.socialButton}>
@@ -83,10 +93,10 @@ const TLLoginProfissional = () => {
           <Text style={styles.socialButtonText}>Facebook</Text>
         </Pressable>
       </View>
-      
+
+      <Text>{resultado}</Text>
     </View>
   );
-
 };
 
 const styles = StyleSheet.create({
@@ -137,13 +147,6 @@ const styles = StyleSheet.create({
     fontFamily: FontFamily.kumbhSansBold,
     color: Color.colorWhite,
   },
-  alreadyHaveAccountText: {
-    textAlign: "center",
-    color: Color.colorMediumvioletred_100,
-    fontFamily: FontFamily.kumbhSansRegular,
-    textDecorationLine: "underline",
-    marginTop: 10,
-  },
   socialButtonsContainer: {
     flexDirection: "row",
     justifyContent: "center",
@@ -167,22 +170,6 @@ const styles = StyleSheet.create({
   socialButtonText: {
     fontSize: FontSize.size_mini,
     fontFamily: FontFamily.kumbhSansLight,
-    color: Color.colorSlategray_100,
-  },
-  termsContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginHorizontal: 20,
-    marginTop: 20,
-  },
-  checkbox: {
-    width: 16,
-    height: 16,
-    marginRight: 10,
-  },
-  termsText: {
-    fontSize: FontSize.size_xs,
-    fontFamily: FontFamily.kumbhSansRegular,
     color: Color.colorSlategray_100,
   },
 });
