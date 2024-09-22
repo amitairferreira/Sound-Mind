@@ -15,25 +15,29 @@ const TLLoginUsuario = ({ navigation }) => {
   const handleLogin = async () => {
     setResultado('');
     setCarregando(true);
-
-    let { data, error } = await supabase.auth.signInWithPassword({
-      email: email,
-      password: senha,
-    });
-
-    setCarregando(false);
-
-    if (error) {
-      console.log(JSON.stringify(error));
-      
-      setResultado("USUÁRIO/SENHA incorretos!");
-    } else {
-      await AsyncStorage.setItem('usuario', email);
-      navigation.navigate('TLPrincipalUsuario');
+  
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password: senha,
+      });
+  
+      if (error) {
+        console.log(JSON.stringify(error));
+        setResultado("USUÁRIO/SENHA incorretos!");
+      } else if (data) {
+        await AsyncStorage.setItem('usuario', email);
+        navigation.navigate('TLPrincipalUsuario');
+      }
+    } catch (err) {
+      // Captura qualquer outro erro inesperado
+      console.log('Erro inesperado:', err);
+      setResultado('Ocorreu um erro. Tente novamente mais tarde.');
+    } finally {
+      // Garante que o estado de carregamento seja desativado
+      setCarregando(false);
     }
   };
-
-
 
   return (
     <View style={styles.tlLoginUsurio}>
