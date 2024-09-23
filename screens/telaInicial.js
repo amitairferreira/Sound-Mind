@@ -2,9 +2,15 @@ import React from "react";
 import { StyleSheet, Text, View, Pressable, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { FontFamily, FontSize, Color, Border } from "../GlobalStyles";
+import JailMonkey from 'jail-monkey';
+
 
 const TelaInicial = () => {
   const navigation = useNavigation();
+
+  if (JailMonkey.isJailBroken()) {
+    BackHandler.exitApp();
+  }
 
   return (
     <View style={styles.telaInicial}>
